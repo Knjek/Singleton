@@ -1,13 +1,21 @@
 package se.yrgo;
 
-public class RootUser{
+public class LazyRootUser {
+    private static LazyRootUser instance;
     private int UID = 0;
     private int GID = 0;
     private String userName = "root";
     private String name = "Super user";
     private String home = "/root";
     private String shell = "/bin/sh";
-    public RootUser(){
+    private LazyRootUser(){
+    }
+
+    public static LazyRootUser getInstance() {
+        if (instance == null) {
+            instance = new LazyRootUser();
+        }
+        return instance;
     }
     @Override
     public String toString(){
